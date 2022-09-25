@@ -1,4 +1,4 @@
-package ru.kemsu.nestedlayouts
+package com.example.complexevent
 
 import org.junit.Test
 

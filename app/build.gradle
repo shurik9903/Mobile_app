@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.kemsu.nestedlayouts'
+    namespace 'com.example.complexevent'
     compileSdk 32
 
     defaultConfig {
-        applicationId "ru.kemsu.nestedlayouts"
+        applicationId "com.example.complexevent"
         minSdk 24
         targetSdk 32
         versionCode 1
