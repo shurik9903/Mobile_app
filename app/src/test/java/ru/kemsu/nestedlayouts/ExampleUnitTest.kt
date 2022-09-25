@@ -1,4 +1,4 @@
-package ru.kemsu.mobileapp
+package ru.kemsu.nestedlayouts
 
 import org.junit.Test
 
