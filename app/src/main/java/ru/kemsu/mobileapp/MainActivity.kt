@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_2_3)
 
         //1 Задание 2 лаб
-//        var m_button:Button? = findViewById<Button>(R.id.button_ok)
+//        val m_button:Button? = findViewById<Button>(R.id.button_ok)
 //
 //        m_button?.let {
 //            m_button.setOnClickListener {
@@ -25,28 +25,28 @@ class MainActivity : AppCompatActivity() {
 //        }
 
         //2 Задание 2 лаб
-//        val but_log:Button? = findViewById<Button>(R.id.button_log)
-//        val edit_text:EditText? = findViewById<EditText>(R.id.edit_text)
-//
-//        but_log?.let {
-//            but_log.setOnClickListener {
-//                edit_text?.let {
-//                    Log.v("From EditText", edit_text.text.toString())
-//                }
-//            }
-//        }
-//
-//        val but_timber:Button? = findViewById<Button>(R.id.button_timber)
-//        Timber.plant(Timber.DebugTree())
-//
-//        but_timber?.let {
-//            but_timber.setOnClickListener {
-//                edit_text?.let {
-//                    Timber.v(edit_text.text.toString())
-//                }
-//            }
-//        }
-//
+/*        val but_log:Button? = findViewById<Button>(R.id.button_log)
+        val edit_text:EditText? = findViewById<EditText>(R.id.edit_text)
+
+        but_log?.let {
+            but_log.setOnClickListener {
+                edit_text?.let {
+                    Log.v("From EditText", edit_text.text.toString())
+                }
+            }
+        }
+
+        val but_timber:Button? = findViewById<Button>(R.id.button_timber)
+        Timber.plant(Timber.DebugTree())
+
+        but_timber?.let {
+            but_timber.setOnClickListener {
+                edit_text?.let {
+                    Timber.v(edit_text.text.toString())
+                }
+            }
+        }*/
+
 
         //3 Задание 2 лаб
 
