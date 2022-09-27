@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,22 +7,112 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <EditText
+    <LinearLayout
+        android:id="@+id/My_Layout_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/full_name"
-        android:inputType="text" />
+        android:layout_height="80sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/My_Layout_2"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:src="@mipmap/ic_launcher"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/My_Layout_2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_height="80sp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/My_Layout_1"
+        app:layout_constraintBottom_toTopOf="@id/My_Layout_3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/My_Layout_3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/My_Layout_2"
+        app:layout_constraintBottom_toTopOf="@id/button_roll">
+
+        <TextView
+            android:id="@+id/CTV1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/CTV2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/CTV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/CTV1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/CTV3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/CTV1"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/button_roll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OK"
-        android:layout_gravity="center" />
+        app:layout_constraintTop_toBottomOf="@id/My_Layout_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="ROLL!"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
