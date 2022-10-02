@@ -1,4 +1,4 @@
-package ru.kemsu.mobileapp
+package com.example.internettest
 
 import org.junit.Test
 
