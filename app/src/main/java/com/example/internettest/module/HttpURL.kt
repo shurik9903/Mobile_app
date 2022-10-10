@@ -4,12 +4,12 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.annotation.WorkerThread
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
 import java.io.IOException
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+
 
 @WorkerThread
 fun getURLData(url: URL){
@@ -37,10 +37,6 @@ fun getURLData(url: URL){
 
         Log.d("Flickr cats: ", data)
 
-        Handler(Looper.getMainLooper()).post{
-
-        }
-
     } catch (ex : Exception) {
         Log.d("Flickr cats: |Connecting Error: ", ex.toString())
     } finally {
@@ -48,7 +44,6 @@ fun getURLData(url: URL){
     }
 }
 
-@Throws(IOException::class)
 fun getURLDataOk(url : String) {
 
     val client = OkHttpClient();
@@ -57,8 +52,17 @@ fun getURLDataOk(url : String) {
         .url(url)
         .build()
 
-    client.newCall(request).execute().use {
-            Log.i("Flickr OkCats: ", it.body?.string().toString())
-    }
+    client.newCall(request).enqueue(object: Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            e.printStackTrace()
+        }
 
+        override fun onResponse(call: Call, response: Response) {
+            response.use {
+                if (!response.isSuccessful) throw IOException("Unexpected code $response")
+                Log.i("Flickr OkCats: ", response.body?.string().toString())
+            }
+
+        }
+    })
 }
