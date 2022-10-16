@@ -1,9 +1,3 @@
 <resources>
-    <string name="app_name">MobileApp</string>
-    <string name="eng_poem">
-        «If the bears were bees \nThey they would not care \nNever thought \nBuilding a house so high!»
-    </string>
-    
-    <string name="full_name">Бовт Александр МОА-195</string>
-    
+    <string name="app_name">GSON</string>
 </resources>
