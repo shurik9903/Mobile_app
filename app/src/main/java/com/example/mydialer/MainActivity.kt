@@ -1,16 +1,18 @@
 package com.example.mydialer
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mydialer.data.Contact
+import com.example.mydialer.data.ImageData
 import com.example.mydialer.module.Adapter
 import com.example.mydialer.module.getURLDataOk
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import timber.log.Timber.Forest.plant
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,41 +21,62 @@ class MainActivity : AppCompatActivity() {
 
         plant(Timber.DebugTree())
 
-        val button: Button? = findViewById(R.id.btn_search)
-        val textSearch: EditText? = findViewById(R.id.et_search)
-
-
+//        val toolbar: Toolbar  = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         val recyclerView: RecyclerView? = findViewById(R.id.rView)
-        recyclerView?.layoutManager = LinearLayoutManager(this)
+        recyclerView?.layoutManager = GridLayoutManager(this, 2)
 
-        var listContact = arrayListOf<Contact>()
+        var listContact = arrayListOf<ImageData>()
         val adapter = Adapter()
         recyclerView?.adapter = adapter
         adapter.submitList(listContact)
 
-        button?.setOnClickListener {
-            if (textSearch?.text?.isEmpty() != true){
-                val findList = listContact.filter {
-                    it.name.contains(textSearch?.text.toString()) or
-                            it.phone.contains(textSearch?.text.toString()) or
-                            it.type.contains(textSearch?.text.toString())
-                }
-
-                adapter.submitList(findList)
-            } else {
-                adapter.submitList(listContact)
-            }
-        }
-
-
-        val okAdapter = fun(data: ArrayList<Contact>) {
+        val okAdapter = fun(data: ArrayList<ImageData>) {
             runOnUiThread {
                 listContact = data
                 adapter.submitList(listContact)
             }
         }
 
-        getURLDataOk("https://drive.google.com/u/0/uc?id=1-KO-9GA3NzSgIc1dkAsNm8Dqw0fuPxcR&export=download", okAdapter)
+
+        getURLDataOk("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=ff49fcd4d4a08aa6aafb6ea3de826464&tags=cat&format=json&nojsoncallback=1", okAdapter)
+    }
+
+
+
+     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+         super.onActivityResult(requestCode, resultCode, data)
+            if(resultCode == RESULT_OK) {
+                if (requestCode == 1 ) {
+                    if (data!= null) {
+                        val like : Boolean = data.getBooleanExtra("like",false)
+
+                        if (like) {
+
+                            val likeUrl: String? = data.getStringExtra("likeUrl")
+
+                            val coordinatorLayout: RecyclerView? = findViewById(R.id.rView)
+
+                            coordinatorLayout?.let {
+                                val snackbar: Snackbar = Snackbar
+                                    .make(
+                                        it,
+                                        "Картинка добавлена в избранное",
+                                        Snackbar.LENGTH_LONG
+                                    )
+                                    .setAction("Открыть") {
+                                        val browserIntent = Intent(
+                                            Intent.ACTION_VIEW,
+                                            Uri.parse(likeUrl)
+                                        )
+                                        startActivity(browserIntent)
+                                    }
+                                snackbar.show()
+                            }
+                        }
+                    }
+                }
+            }
     }
 }

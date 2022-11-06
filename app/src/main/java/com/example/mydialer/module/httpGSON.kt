@@ -1,12 +1,12 @@
 package com.example.mydialer.module
 
+import com.example.mydialer.data.*
 import com.google.gson.Gson
 import okhttp3.*
-import com.example.mydialer.data.Contact
 import timber.log.Timber
 import java.io.IOException
 
-fun getURLDataOk(url : String, callback: (ArrayList<Contact>) -> Unit) {
+fun getURLDataOk(url : String, callback: (ArrayList<ImageData>) -> Unit) {
 
     val client = OkHttpClient();
 
@@ -24,14 +24,16 @@ fun getURLDataOk(url : String, callback: (ArrayList<Contact>) -> Unit) {
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
                 val body = response.body?.string()
-                val contacts: List<Contact> = Gson().fromJson(body, Array<Contact>::class.java).toList()
 
+                val wrapper: Wrapper? = Gson().fromJson(body, Wrapper::class.java)
+                val photoPage: PhotoPage? = Gson().fromJson(wrapper?.photos, PhotoPage::class.java)
+                val photo: List<Photo> = Gson().fromJson(photoPage?.photo, Array<Photo>::class.java).toList()
 
-                Timber.i(contacts.toString())
+                val photoUrl: ArrayList<ImageData> = photo.map {  ImageData("https://farm${it.farm}.staticflickr.com/${it.server}/${it.id}_${it.secret}_z.jpg")} as ArrayList<ImageData>
 
+                Timber.i(photoUrl.toString())
 
-
-                callback(contacts as ArrayList<Contact>)
+                callback(photoUrl)
             }
 
         }
