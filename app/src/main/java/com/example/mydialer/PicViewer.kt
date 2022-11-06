@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import com.bumptech.glide.Glide
 
 
@@ -34,8 +36,10 @@ class PicViewer : AppCompatActivity() {
         when(item.itemId){
             android.R.id.home -> finish()
             R.id.like -> {
-//                item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite)
-//                Toast.makeText(this, "Добавлено в Избранное", Toast.LENGTH_SHORT).show()
+
+                item.icon = AppCompatResources.getDrawable(this, R.drawable.ic_baseline_favorite)
+                Toast.makeText(this, "Добавлено в Избранное", Toast.LENGTH_SHORT).show()
+
                 val intentOut = Intent()
                 intentOut.putExtra("like", true)
                 intentOut.putExtra("likeUrl", intent.getStringExtra("picLink"))

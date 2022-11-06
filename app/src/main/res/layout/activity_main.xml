@@ -7,9 +7,7 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Toolbar
-        android:id="@+id/toolbar"
-        style="@style/Toolbar"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rView"

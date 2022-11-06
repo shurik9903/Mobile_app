@@ -21,9 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         plant(Timber.DebugTree())
 
-//        val toolbar: Toolbar  = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-
         val recyclerView: RecyclerView? = findViewById(R.id.rView)
         recyclerView?.layoutManager = GridLayoutManager(this, 2)
 
