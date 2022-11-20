@@ -2,7 +2,6 @@ package com.example.retrofitforecaster
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
