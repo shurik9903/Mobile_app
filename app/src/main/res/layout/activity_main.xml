@@ -7,22 +7,36 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <EditText
+    <androidx.appcompat.widget.Toolbar
+        style="@style/Toolbar"
+        android:id="@+id/find_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/full_name"
-        android:inputType="text" />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="..."
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:inputType="text"
+            />
 
-    <Button
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/name_city"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        android:layout_gravity="center" />
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/r_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
 
 </LinearLayout>
